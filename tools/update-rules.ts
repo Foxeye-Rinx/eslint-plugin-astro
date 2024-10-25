@@ -1,5 +1,5 @@
 import path from "path"
-import { rules } from "./lib/load-rules"
+import { rules } from "../src/rules"
 import { formatAndSave } from "./lib/utils"
 
 /**
