@@ -1,0 +1,6 @@
+.download-badges p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+

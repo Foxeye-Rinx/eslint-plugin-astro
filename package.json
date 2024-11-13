@@ -37,6 +37,7 @@
     "docs:build": "astro build",
     "docs:setup": "node ./docs-build/setup-docs.mjs",
     "docs:preview": "astro preview",
+    "docs2": "cd docs2 && npm run dev",
     "preversion": "npm test && git add .",
     "version": "env-cmd -e version npm run update && git add .",
     "version:ci": "env-cmd -e version-ci npm run update && changeset version",

@@ -20,7 +20,9 @@ function yamlValue(val: unknown) {
   return val
 }
 
-const ROOT = path.resolve(__dirname, "../docs/rules")
+// const ROOT = path.resolve(__dirname, "../docs/rules")
+
+const ROOT = path.resolve(__dirname, "../docs2/src/content/docs/rules")
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function pickSince(content: string): string | null | Promise<string> {
@@ -54,7 +56,7 @@ class DocFile {
 
   public constructor(rule: RuleModule) {
     this.rule = rule
-    this.filePath = path.join(ROOT, `${rule.meta.docs.ruleName}.md`)
+    this.filePath = path.join(ROOT, `${rule.meta.docs.ruleName}.mdx`)
     this.content = fs.existsSync(this.filePath)
       ? fs.readFileSync(this.filePath, "utf8")
       : "\n\n"
@@ -67,11 +69,11 @@ class DocFile {
 
   public updateHeader() {
     const ruleDocs = this.rule.meta.docs
-    const { ruleId, description } = ruleDocs
+    const { description } = ruleDocs
     const isNewRule = !this.since
     const notes = buildNotesFromRule(this.rule, isNewRule)
     const headerPattern = /(?:^|\n)#.+\n+[^\n]*\n+(?:- .+\n+)*\n*/u
-    const header = renderRuleHeader({ ruleId, description, notes })
+    const header = renderRuleHeader({ description, notes })
     this.content = headerPattern.test(this.content)
       ? this.content.replace(headerPattern, header)
       : `${header}${this.content.trim()}\n`

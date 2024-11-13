@@ -109,3 +109,8 @@ dist
 /docs-build/shim/astro-eslint-parser.mjs
 /docs-build/shim/eslint-plugin-jsx-a11y.mjs
 /tests/fixtures/integration/**/actual.json
+
+docs2/.astro/astro/
+docs2/.astro/
+docs2/.netlify/v1/
+docs2/public/.DS_Store
