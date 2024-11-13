@@ -78,7 +78,7 @@ tester.run("${ruleId}", rule as any, loadTestCases("${ruleId}"))
   )
   fs.writeFileSync(
     docFile,
-    `${renderRuleHeader({ ruleId: `astro/${ruleId}`, description: "description", notes: [] })}
+    `${renderRuleHeader({ description: "description", notes: [] })}
 
 ## 📖 Rule Details
 

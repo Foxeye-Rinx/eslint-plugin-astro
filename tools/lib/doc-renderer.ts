@@ -3,7 +3,6 @@
 import type { RuleModule, RuleMetaData } from "src/types"
 
 type RuleDocHeader = {
-  ruleId: string
   description: string
   notes: string[]
 }
@@ -12,7 +11,6 @@ type RuleDocHeader = {
  *
  * example header:
  * ```
- * # astro/no-unused-vars
  *
  * > description
  *
@@ -24,13 +22,12 @@ type RuleDocHeader = {
  * and there is a trailing newline at the end.
  */
 export function renderRuleHeader({
-  ruleId,
   description,
   notes,
 }: RuleDocHeader): string {
   const hasNotes = notes.length > 0
   const notesStr = hasNotes ? `${notes.join("\n")}\n\n` : ""
-  return `# ${ruleId}\n\n> ${description}\n\n${notesStr}`
+  return `\n\n> ${description}\n\n${notesStr}`
 }
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools

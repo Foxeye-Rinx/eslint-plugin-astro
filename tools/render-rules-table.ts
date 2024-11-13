@@ -1,61 +1,11 @@
 // eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair -- ignore
 /* eslint-disable func-style -- Arrow functions are better when returning string */
-import type { RuleCategory, RuleModule } from "../src/types"
-import { rules } from "../src/rules"
-
-const categories: RuleCategory[] = [
-  "Possible Errors",
-  "Security Vulnerability",
-  "Best Practices",
-  "Stylistic Issues",
-  "A11Y Extension Rules",
-  "Extension Rules",
-  "System",
-] as const
-
-const descriptions: Record<RuleCategory, string> = {
-  "Possible Errors":
-    "These rules relate to possible syntax or logic errors in Astro component code:",
-  "Security Vulnerability":
-    "These rules relate to security vulnerabilities in Astro component code:",
-  "Best Practices":
-    "These rules relate to better ways of doing things to help you avoid problems:",
-  "Stylistic Issues":
-    "These rules relate to style guidelines, and are therefore quite subjective:",
-  "A11Y Extension Rules":
-    "These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  \n(You need to install [eslint-plugin-jsx-a11y] to use the rules.)",
-  "Extension Rules":
-    "These rules extend the rules provided by ESLint itself to work well in Astro component:",
-  System: "These rules relate to this plugin works:",
-}
-
-const activeRules = rules.filter((rule) => !rule.meta.deprecated)
-const astroRules = activeRules
-const deprecatedRules = rules.filter((rule) => rule.meta.deprecated)
-
-activeRules.forEach((rule) => {
-  if (!categories.includes(rule.meta.docs.category)) {
-    throw new Error(`missing categories:${rule.meta.docs.category}`)
-  }
-})
-
-type RulesGroupByCategory = {
-  cat: RuleCategory
-  description: string
-  rules: RuleModule[]
-}
+import type { RuleModule } from "../src/types"
+import type { RulesGroupByCategory } from "./lib/doc-metadata"
+import { deprecatedRules, categoryRules } from "./lib/doc-metadata"
 
 const buildDefaultRulePath = (ruleName: string) => `./rules/${ruleName}.md`
-
 type BuildRulePathFunc = typeof buildDefaultRulePath
-
-const categoryRules: RulesGroupByCategory[] = categories.map((cat) => {
-  return {
-    cat,
-    description: descriptions[cat],
-    rules: astroRules.filter((rule) => rule.meta.docs.category === cat),
-  }
-})
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- ignore
 function toRuleRow(rule: RuleModule, buildRulePath: BuildRulePathFunc) {
