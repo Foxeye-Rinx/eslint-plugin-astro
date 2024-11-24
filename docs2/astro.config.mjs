@@ -4,6 +4,8 @@ import starlight from "@astrojs/starlight"
 import netlify from "@astrojs/netlify"
 import { categoryRules } from "../tools/lib/doc-metadata"
 
+import svelte from "@astrojs/svelte"
+
 /** @typedef {{label: string, items: Array<string>}} SideBarGroup */
 /** @type {SideBarGroup[]} */
 const groups = categoryRules
@@ -34,6 +36,7 @@ export default defineConfig({
         },
       ],
     }),
+    svelte(),
   ],
   output: "server",
   adapter: netlify(),
