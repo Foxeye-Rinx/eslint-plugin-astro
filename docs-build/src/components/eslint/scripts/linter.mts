@@ -1,8 +1,8 @@
-import { rules as pluginRules } from "../../../../../src/rules"
+import { rules as pluginRules } from "../../../../../src/rules/index.ts"
 import type { Linter, Rule } from "eslint"
 import { builtinRules } from "eslint/use-at-your-own-risk"
 import * as astroEslintParser from "astro-eslint-parser"
-import * as processors from "../../../../../src/processor/index.js"
+import * as processors from "../../../../../src/processor/index.ts"
 import type { RuleModule } from "../../../../../src/types.js"
 import globals from "globals"
 
@@ -142,8 +142,7 @@ export function rulesMap(): Map<string, Rule.RuleModule> {
 
 export async function createLinterConfig(): Promise<Linter.Config[]> {
   const tsParser = await import("@typescript-eslint/parser")
-
-  await (astroEslintParser as any).setup()
+  // await (astroEslintParser as any).setup()
   return [
     {
       files: ["**"],

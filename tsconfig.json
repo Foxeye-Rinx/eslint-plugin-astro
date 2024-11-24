@@ -31,6 +31,7 @@
     "noEmit": true
   },
   "include": [
+    "test.ts",
     "src/**/*",
     "tests/src/**/*",
     "tests/integration/**/*",
@@ -40,10 +41,14 @@
     "docs-build/src/**/*.ts",
     "docs-build/src/**/*.astro",
     "docs-build/src/**/*.svelte",
-    "docs2/**/*",
+    "docs2/src/*",
     "docs/**/*.astro",
     "typings/**/*",
     "tsup.config.ts"
   ],
-  "exclude": ["lib/**/*", "tests/fixtures/**/*"]
+  "exclude": ["lib/**/*", "tests/fixtures/**/*"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }
